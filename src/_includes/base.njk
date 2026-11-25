@@ -1,0 +1,111 @@
+{% from "icons.njk" import wa, tel, ig, fb %}
+{%- set waBase = 'https://wa.me/' + site.whatsapp -%}
+<!doctype html>
+<html lang="it" data-type="service" data-radius="soft" data-buttons="tonal" data-motion>
+<head>
+{% include "head.njk" %}
+<meta name="site-kind" content="other">
+<meta name="page-type" content="service">
+<link rel="stylesheet" href="/assets/system.css">
+<link rel="stylesheet" href="/assets/ui/cards.css">
+<link rel="stylesheet" href="/assets/motion/motion.css">
+<link rel="stylesheet" href="/assets/layout/layout.css">
+<link rel="stylesheet" href="/assets/site.css">
+<script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+<script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
+{% if isHome %}<link rel="modulepreload" href="/assets/moments/moments.js">
+<link rel="modulepreload" href="/assets/moments/lib.js">
+<link rel="modulepreload" href="/assets/moments/word-highlight/moment.js">
+<link rel="modulepreload" href="/assets/moments/pinned-chapters/moment.js">{% endif %}
+{{ headExtra | safe }}
+</head>
+<body>
+{%- set h = "" if isHome else "/" -%}
+<header class="nav nav--centre">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top">Vai al contenuto</a>
+    <a class="nav__logo" href="{{ '#top' if isHome else '/' }}"><img src="/logo.svg" alt="" width="40" height="40">{{ site.nome }}</a>
+    <nav class="nav__links" aria-label="Principale">
+      <div class="nav__item">
+        <a class="nav__link" href="{{ h }}#servizi">Servizi <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav__menu">
+          <div class="wrap grid">
+            <div class="menu-col span-3">
+              <p class="t-label">Trattamenti olistici</p>
+              {% for s in servizi | byCat('trattamenti') %}<a href="{{ h }}#servizi">{{ s.nome }}</a>
+              {% endfor %}
+            </div>
+            <div class="menu-col span-3">
+              <p class="t-label">Consulenze astrologiche</p>
+              {% for s in servizi | byCat('astrologia') %}<a href="{{ h }}#servizi">{{ s.nome }}</a>
+              {% endfor %}
+            </div>
+            {% set p1 = home.percorso.passi[1] or home.percorso.passi[0] %}
+            <a class="menu-card span-3 start-10" href="{{ h }}#percorso">
+              <div class="panel"><img class="frame__img" src="{{ p1.immagine | img(600) }}" alt="{{ p1.alt }}" loading="lazy"></div>
+              <span class="t-card">{{ home.percorso.titolo }}</span>
+              <span class="t-small muted">Dal primo messaggio all'incontro</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav__item"><a class="nav__link" href="{{ h }}#chi-sono">Chi sono</a></div>
+      {% if collections.eventiOrdinati.length %}<div class="nav__item"><a class="nav__link" href="{{ h }}#eventi">Eventi</a></div>{% endif %}
+      <div class="nav__item"><a class="nav__link" href="/gift-card.html">Gift card</a></div>
+      <div class="nav__item"><a class="nav__link" href="{{ h }}#domande">FAQ</a></div>
+      <div class="nav__item"><a class="nav__link" href="{{ h }}#sedi">Sedi</a></div>
+    </nav>
+    <div class="nav__actions">
+      <a class="btn btn--primary" href="{{ h }}#contatti">Chiedi informazioni</a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+{{ content | safe }}
+</main>
+
+<footer class="footer closing footer--dark ground-inverse" id="contact" {% if showBanner %}aria-labelledby="close-h"{% else %}aria-label="Piè di pagina"{% endif %}>
+  <div class="wrap">
+    {% if showBanner %}<a class="gc-banner" href="/gift-card.html">
+      <span class="gc-banner__card" aria-hidden="true"><img src="/logo.svg" alt="" width="44" height="44"><i>Gift card</i></span>
+      <span class="gc-banner__txt"><span class="gc-banner__h" id="close-h">{{ home.gift_card.banner_titolo }}</span><span class="gc-banner__p">{{ home.gift_card.banner_testo }}</span></span>
+      <span class="btn btn--primary gc-banner__btn">Crea una gift card</span>
+    </a>{% endif %}
+    <div class="closing__links">
+      <div class="grid">
+        <div class="span-4 stack-4">
+          <a class="nav__logo" href="{{ '#top' if isHome else '/' }}"><img src="/logo.svg" alt="" width="48" height="48">{{ site.nome }}</a>
+          <p class="footer__lede">{{ site.footer_descrizione }}</p>
+        </div>
+        <div class="span-2 start-7 footer__col"><h3>Servizi</h3><ul><li><a href="{{ h }}#servizi">Trattamenti olistici</a></li><li><a href="{{ h }}#servizi">Consulenze astrologiche</a></li><li><a href="/gift-card.html">Gift card</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Informazioni</h3><ul><li><a href="{{ h }}#percorso">Percorso</a></li><li><a href="{{ h }}#domande">Domande</a></li><li><a href="{{ h }}#sedi">Sedi</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Contatti</h3><ul><li><a href="{{ waBase }}">WhatsApp</a></li><li><a href="tel:+{{ site.whatsapp }}">{{ site.telefono }}</a></li>{% if site.email %}<li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>{% endif %}</ul></div>
+      </div>
+      <div class="footer__legal">
+        <div class="socials">{% if site.instagram %}<a href="{{ site.instagram }}" aria-label="Instagram">{{ ig() }}</a>{% endif %}{% if site.facebook %}<a href="{{ site.facebook }}" aria-label="Facebook">{{ fb() }}</a>{% endif %}<a href="{{ waBase }}" aria-label="WhatsApp">{{ wa() }}</a></div>
+        <span>&copy; {{ build.year }} {{ site.nome }}{% if site.partita_iva %} &nbsp;·&nbsp; P. IVA {{ site.partita_iva }}{% endif %} &nbsp; <a href="/privacy.html">Privacy</a></span>
+        {% if site.crediti_immagini %}<span class="credits">{{ site.crediti_immagini }}</span>{% endif %}
+      </div>
+    </div>
+  </div>
+</footer>
+
+<nav class="actionbar" aria-label="Azioni rapide">
+  <a class="btn btn--secondary" href="{{ waBase }}">WhatsApp</a>
+  <a class="btn btn--primary" href="{{ h }}#contatti">Chiedi informazioni</a>
+</nav>
+<script>window.TV = {{ {
+  wa: site.whatsapp, tel: site.telefono,
+  sedi: sedi
+} | json | safe }};
+TV.S = { {% for s in servizi %}{{ s | key | json | safe }}: [{{ s.nome | json | safe }}, {{ s.descrizione | json | safe }}, {{ (s.online == true) | json | safe }}, {{ s.immagine | img(600) | json | safe }}]{% if not loop.last %}, {% endif %}{% endfor %} };</script>
+<script type="module" src="/assets/site.js"></script>
+<script type="module" src="/assets/system.js"></script>
+<script type="module" src="/assets/motion/motion.js"></script>
+<script type="module" src="/assets/layout/layout.js"></script>
+</body>
+</html>

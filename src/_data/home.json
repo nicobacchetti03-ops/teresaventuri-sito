@@ -1,0 +1,82 @@
+{
+  "hero": {
+    "citazione": "Un viaggio di mille miglia inizia con un singolo passo.",
+    "autore": "Lao Tzu",
+    "immagine": "/media/hero-lago.webp",
+    "alt": "Una donna di spalle cammina a piedi nudi sulla riva di un lago all'alba"
+  },
+  "servizi": {
+    "titolo": "Consulenze e trattamenti",
+    "intro": "Considero la persona nella sua totalità: corpo, mente e spirito. Lo stato di benessere nasce proprio dall'equilibrio e dall'armonia di questi tre elementi. Per questa ragione integro nel mio lavoro più strumenti."
+  },
+  "questionario": {
+    "titolo": "Trova il percorso per te",
+    "intro": "Tre domande, meno di un minuto. Ti suggerisco da dove partire e prepariamo insieme la richiesta.",
+    "nota": "È solo un primo orientamento: ne parliamo meglio nel primo incontro."
+  },
+  "archetipo": {
+    "titolo": "Scopri il tuo archetipo",
+    "intro": "Paragonando lo zodiaco al Viaggio dell'Eroe, scopri a quale archetipo corrisponde il tuo segno. Scegli il giorno e il mese in cui sei nata o nato."
+  },
+  "chi_sono": {
+    "titolo": "Chi sono",
+    "paragrafi": [
+      "Sono Teresa, naturopata. Mi sono avvicinata al mondo olistico e all'astrologia cercando un modo gentile di prendermi cura di me, e oggi lo condivido con chi viene a trovarmi.",
+      "Lavoro integrando diversi strumenti e tecniche: la lettura del cielo e il lavoro con le mani, due strade diverse per ascoltarti che puoi scegliere singolarmente o integrate."
+    ],
+    "frase": "Non curo malattie e non prendo il posto del medico. Ti accompagno a conoscerti meglio e a prenderti cura del tuo equilibrio, un passo alla volta.",
+    "ritratto": "",
+    "ritratto_alt": "Ritratto di Teresa Venturi"
+  },
+  "percorso": {
+    "titolo": "Il percorso in 3 passi",
+    "intro": "Dal primo messaggio al primo incontro, con i tuoi tempi.",
+    "passi": [
+      {
+        "titolo": "Mi scrivi",
+        "testo": "Dal modulo qui sotto o su WhatsApp. Raccontami cosa cerchi: se non sai ancora cosa scegliere, va bene così.",
+        "immagine": "/media/scrivi.webp",
+        "alt": "Mani che scrivono un messaggio al telefono, con una tazza di tisana sul bracciolo"
+      },
+      {
+        "titolo": "Ci conosciamo",
+        "testo": "Un primo incontro per conoscerci, focalizzare l'obiettivo e iniziare il cammino.",
+        "immagine": "/media/colloquio.webp",
+        "alt": "Due poltrone di lino e un tavolino con due tazze di tisana, nella luce del pomeriggio"
+      },
+      {
+        "titolo": "Scegliamo i tempi",
+        "testo": "Un incontro singolo o più appuntamenti: decidiamo passo dopo passo, senza pacchetti da acquistare in anticipo.",
+        "immagine": "/media/percorso.webp",
+        "alt": "Un sentiero tra gli ulivi sopra il lago, nella luce del tramonto"
+      }
+    ]
+  },
+  "eventi": {
+    "titolo": "Incontri ed eventi",
+    "intro": "Serate divulgative aperte a tutti, per riflettere insieme e fare domande. L'ingresso è libero, con prenotazione."
+  },
+  "sedi": {
+    "titolo": "Le sedi e le consulenze online",
+    "intro": "Ricevo tra il lago di Garda, Brescia e la Valle Sabbia, e faccio consulenze anche online.",
+    "immagine": "/media/lago.webp",
+    "alt": "Un borgo sul lago al mattino, con case color ocra, barche di legno e ulivi"
+  },
+  "domande": {
+    "titolo": "Domande su consulenze e trattamenti"
+  },
+  "contatti": {
+    "titolo": "Richiesta di informazioni",
+    "intro": "Scrivimi cosa ti incuriosisce e dove preferisci incontrarci. Ti rispondo io, personalmente.",
+    "messaggio_inviato": "La tua richiesta di informazioni è arrivata. Ti rispondo io, appena possibile.",
+    "immagine": "/media/lettera.webp",
+    "alt": "Un vasetto di fiori di campo e una lettera sul davanzale di una finestra aperta sul lago"
+  },
+  "gift_card": {
+    "banner_titolo": "Regala un momento di benessere",
+    "banner_testo": "Una gift card per un trattamento o una consulenza, a tema Natale, compleanno o classico.",
+    "titolo": "Regala una gift card",
+    "intro": "Scegli il trattamento o la consulenza, scrivi a chi è dedicata e guarda il voucher prendere forma. Poi lo invii a me: ti confermo i dettagli e lo spedisco all'indirizzo email indicato.",
+    "nota": "Anteprima. La gift card è valida solo dopo la conferma di Teresa."
+  }
+}

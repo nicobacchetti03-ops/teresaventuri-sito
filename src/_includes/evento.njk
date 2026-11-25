@@ -1,0 +1,123 @@
+{%- set wa = 'https://wa.me/' + site.whatsapp -%}
+{%- set dove = luogo + (', ' if luogo and indirizzo else '') + indirizzo + ', ' + citta -%}
+{%- set giorno = data_ora | evDay -%}
+<!doctype html>
+<html lang="it" data-radius="soft" data-buttons="tonal">
+<head>
+{% set pageTitle = titolo + (' · ' + serie if serie else '') + ' · Teresa Venturi' %}
+{% set pageDescription = 'Serata' + (' del ciclo «' + serie + '»' if serie else '') + ' presentata da ' + presenta + '. ' + giorno + ', ore ' + (data_ora | evTime) + ', ' + citta + '. ' + (ingresso or '') %}
+{% set ogTitle = titolo %}
+{% set ogImage = (locandina | img(1200)) if locandina else '' %}
+{% include "head.njk" %}
+<link rel="stylesheet" href="/assets/system.css">
+<link rel="stylesheet" href="/assets/motion/motion.css">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+:root { --p-bg:#f7f1e8; --p-surface:#efe5d4; --p-ink:#2b1d17; --p-muted:#6e6157; --p-accent:#8f5606; --p-accent-ink:#f7f1e8; --p-action:#8f5606; --p-action-ink:#f7f1e8;
+  --p-inv-bg:#2b1d17; --p-inv-ink:#f7f1e8; --font-display:"Instrument Serif",Georgia,serif; --font-text:"Instrument Sans",system-ui,sans-serif; --gold:#f5af00; }
+body { background: var(--p-bg); color: var(--p-ink); font-family: var(--font-text); margin: 0; }
+::selection { background: var(--gold); color: var(--p-ink); }
+.ev-top { position: sticky; top: 0; z-index: 5; background: rgb(247 241 232 / .92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.ev-top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 72px; }
+.brand { display: inline-flex; align-items: center; gap: 12px; font-family: var(--font-display); font-size: 22px; color: inherit; text-decoration: none; }
+.brand img { width: 40px; height: 40px; }
+.back { font-size: 15px; color: inherit; }
+.ev-page { padding: 56px 0 96px; }
+.ev-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 64px; align-items: start; }
+.poster { margin: 0; border-radius: 18px; overflow: hidden; box-shadow: 0 30px 70px -30px rgb(43 29 23 / .5); position: sticky; top: 104px; }
+.poster img { display: block; width: 100%; height: auto; }
+.chip { display: inline-block; font-size: 12px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; background: var(--gold); color: var(--p-ink); }
+.chip.is-past { background: var(--p-surface); color: var(--p-muted); }
+.serie { margin: 20px 0 8px; font-size: 15px; color: var(--p-muted); }
+h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(40px, 3.2vw + 14px, 64px); line-height: 1.04; letter-spacing: -.01em; margin: 0 0 28px; }
+.facts { list-style: none; margin: 0 0 32px; padding: 0; border-top: 1px solid var(--line); }
+.facts li { display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 17px; }
+.facts b { font-weight: 500; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--p-muted); padding-top: 3px; }
+.desc { font-size: 18px; line-height: 1.6; max-width: 60ch; margin: 0 0 32px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+.actions .btn { min-height: 48px; }
+.small { font-size: 14px; color: var(--p-muted); }
+.other { margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--line); }
+.other h2 { font-family: var(--font-display); font-weight: 400; font-size: 28px; margin: 0 0 16px; }
+.other a.card { display: grid; grid-template-columns: 96px 1fr; gap: 20px; align-items: center; color: inherit; text-decoration: none; padding: 12px; margin: 0 -12px; border-radius: 14px; transition: background .3s; }
+.other a.card:hover { background: var(--p-surface); }
+.other img { width: 96px; height: 120px; object-fit: cover; object-position: 50% 30%; border-radius: 10px; }
+.other .t { font-family: var(--font-display); font-size: 24px; line-height: 1.15; display: block; }
+.ev-foot { background: var(--p-inv-bg); color: var(--p-inv-ink); padding: 40px 0; font-size: 14px; }
+.ev-foot a { color: inherit; }
+.ev-foot .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+@media (max-width: 899px) { .ev-grid { grid-template-columns: 1fr; gap: 32px; } .poster { position: static; max-width: 460px; } .ev-page { padding-top: 32px; } }
+@media (max-width: 639px) { .facts li { grid-template-columns: 1fr; gap: 4px; } .actions .btn { width: 100%; justify-content: center; } .back { display: none; } }
+</style>
+<style>.desc p { margin: 0 0 1em; } .desc :last-child { margin-bottom: 0; } .other a.card + a.card { margin-top: 4px; }</style>
+<script type="application/ld+json">{{ {
+  "@context": "https://schema.org", "@type": "Event", "name": titolo, "startDate": data_ora | evIso,
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "eventStatus": "https://schema.org/EventScheduled",
+  "location": { "@type": "Place", "name": luogo, "address": { "@type": "PostalAddress", "streetAddress": indirizzo, "addressLocality": citta, "addressCountry": "IT" } },
+  "image": [ site.dominio + (locandina | img(1200)) ],
+  "organizer": { "@type": "Person", "name": presenta }
+} | json | safe }}</script>
+</head>
+<body>
+<header class="ev-top"><div class="wrap">
+  <a class="brand" href="/"><img src="/logo.svg" alt="" width="40" height="40">{{ site.nome }}</a>
+  <a class="back link" href="/#eventi">Tutti gli eventi</a>
+</div></header>
+<main class="ev-page" data-start="{{ data_ora | evIso }}">
+  <div class="wrap ev-grid">
+    {% if locandina %}<figure class="poster"><img src="{{ locandina | img(1200) }}" alt="{{ locandina_alt }}" width="{{ locandina | imgw }}" height="{{ locandina | imgh }}"></figure>{% endif %}
+    <div>
+      <span class="chip" data-chip>Prossimo evento</span>
+      {% if serie %}<p class="serie">Serate «{{ serie }}»{% if serie_sottotitolo %} · {{ serie_sottotitolo }}{% endif %}</p>{% endif %}
+      <h1>{{ titolo }}</h1>
+      <ul class="facts">
+        <li><b>Data</b><span>{{ giorno }}</span></li>
+        <li><b>Orario</b><span>{{ data_ora | evTime }}</span></li>
+        <li><b>Luogo</b><span>{{ dove }}</span></li>
+        {% if presenta %}<li><b>Presenta</b><span>{{ presenta }}</span></li>{% endif %}
+        {% if ospiti and ospiti.length %}<li><b>Con</b><span>{% for o in ospiti %}{{ o.nome }}{% if o.ruolo %}, {{ o.ruolo }}{% endif %}{% if not loop.last %}<br>{% endif %}{% endfor %}</span></li>{% endif %}
+        {% if ingresso %}<li><b>Ingresso</b><span>{{ ingresso }}</span></li>{% endif %}
+      </ul>
+      <div class="desc">{{ content | safe }}</div>
+      <div class="actions" data-open>
+        <a class="btn btn--primary" href="{{ wa }}?text={{ ('Ciao Teresa, vorrei prenotare un posto per la serata «' + titolo + '» del ' + (data_ora | evDayShort) + '.') | uri }}">Prenota su WhatsApp</a>
+        <a class="btn btn--secondary" href="tel:+{{ site.whatsapp }}">Chiama {{ site.telefono }}</a>
+      </div>
+      <div class="actions" data-open>
+        <button class="btn btn--secondary" type="button" data-ics>Aggiungi al calendario</button>
+        <a class="btn btn--secondary" href="https://www.google.com/maps/search/?api=1&query={{ dove | uri }}">Come arrivare</a>
+      </div>
+      <div class="actions" data-closed hidden>
+        <a class="btn btn--primary" href="{{ wa }}?text={{ 'Ciao Teresa, vorrei essere avvisata dei prossimi incontri.' | uri }}">Avvisami dei prossimi incontri</a>
+        <a class="btn btn--secondary" href="/#eventi">Vedi gli altri eventi</a>
+      </div>
+      <p class="small" data-open>Prenotazione al {{ site.telefono }}, anche su WhatsApp.</p>
+      {% set altri = collections.eventiOrdinati | others(page.url) %}
+      {% if altri.length %}
+      <section class="other" aria-labelledby="other-h">
+        <h2 id="other-h">{{ "Altri eventi" if altri.length > 1 else "Un altro evento" }}</h2>
+        {% for o in altri %}<a class="card" href="{{ o.url }}">{% if o.data.locandina %}<img src="{{ o.data.locandina | img(600) }}" alt="">{% endif %}<span><span class="small" data-other-status data-start="{{ o.data.data_ora | evIso }}">{{ o.data.data_ora | evDay }} · {{ o.data.data_ora | evTime }}</span><span class="t">{{ o.data.titolo }}</span></span></a>
+        {% endfor %}
+      </section>
+      {% endif %}
+    </div>
+  </div>
+</main>
+<footer class="ev-foot"><div class="wrap"><span>© {{ build.year }} {{ site.nome }}, {{ site.professione }}</span><a href="/">Torna al sito</a></div></footer>
+<script>
+(() => {
+  const main = document.querySelector('[data-start]'), past = +new Date(main.dataset.start) < Date.now();
+  const chip = document.querySelector('[data-chip]');
+  if (past) { chip.textContent = 'Evento concluso'; chip.classList.add('is-past'); document.querySelectorAll('[data-open]').forEach(n => n.hidden = true); document.querySelector('[data-closed]').hidden = false; }
+  document.querySelectorAll('[data-other-status]').forEach(o => { if (+new Date(o.dataset.start) < Date.now()) o.textContent += ' · concluso'; });
+  const E = {{ { s: data_ora | ics, e: data_ora | ics(durata_ore or 2), t: titolo, l: dove, d: (('Serate «' + serie + '» presentate da ' + presenta + '. ') if serie else '') + (ingresso or '') + '. Prenotazione al ' + site.telefono + '.' } | json | safe }};
+  const esc = v => String(v).replace(/[\\,;]/g, m => '\\' + m);
+  document.querySelector('[data-ics]')?.addEventListener('click', () => {
+    const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Teresa Venturi//Eventi//IT','BEGIN:VEVENT','UID:' + E.s + '@teresaventuri.it','DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z',
+      'DTSTART;TZID=Europe/Rome:' + E.s,'DTEND;TZID=Europe/Rome:' + E.e,'SUMMARY:' + esc(E.t),'LOCATION:' + esc(E.l),'DESCRIPTION:' + esc(E.d),'END:VEVENT','END:VCALENDAR'].join('\r\n');
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' })); a.download = 'evento-teresa-venturi.ics'; document.body.appendChild(a); a.click(); a.remove();
+  });
+})();
+</script>
+</body>
+</html>

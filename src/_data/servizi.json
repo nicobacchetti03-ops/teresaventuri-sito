@@ -1,0 +1,92 @@
+[
+  {
+    "nome": "Consulenza Naturopatica",
+    "chiave": "naturopatica",
+    "categoria": "trattamenti",
+    "online": true,
+    "descrizione": "Spazio di ascolto finalizzato a costruire un percorso naturale e su misura, orientato al riequilibrio dell'energia e dell'armonia nel quotidiano.",
+    "immagine": "/media/naturopatica.webp",
+    "alt": "Mani di due persone su un tavolo di legno con quaderno, boccette ambrate e una tazza di tisana"
+  },
+  {
+    "nome": "Consulenza Fiori di Bach",
+    "chiave": "bach",
+    "categoria": "trattamenti",
+    "online": true,
+    "descrizione": "Spazio di ascolto finalizzato a individuare le essenze floreali più adatte a sostenere l'equilibrio emotivo della persona nel momento presente.",
+    "immagine": "/media/bach.webp",
+    "alt": "Boccette di vetro ambrato tra fiori di campo e una ciotola d'acqua al sole"
+  },
+  {
+    "nome": "Riflessologia plantare",
+    "chiave": "riflesso",
+    "categoria": "trattamenti",
+    "online": false,
+    "descrizione": "Tecnica di massaggio e digitopressione applicata sui punti riflessi del piede. Ristabilisce l'equilibrio energetico e stimola il benessere psico-fisico dell'organismo.",
+    "immagine": "/media/riflesso.webp",
+    "alt": "Due mani premono con il pollice la pianta di un piede appoggiato su un asciugamano"
+  },
+  {
+    "nome": "Tecnica Metamorfica",
+    "chiave": "metamorfico",
+    "categoria": "trattamenti",
+    "online": false,
+    "descrizione": "Si basa su un tocco leggero su piedi, mani e testa. Risveglia la forza vitale favorendo il naturale processo di trasformazione interiore.",
+    "immagine": "/media/metamorfico.webp",
+    "alt": "Le dita sfiorano appena il capo di una persona distesa sul lettino"
+  },
+  {
+    "nome": "Le 152 manovre del massaggio Ayurvedico",
+    "chiave": "ayurveda",
+    "categoria": "trattamenti",
+    "online": false,
+    "descrizione": "Favorisce il rilassamento, scioglie le tensioni e riequilibra l'organismo. Sostiene il ritorno venoso e linfatico e distende il sistema nervoso.",
+    "immagine": "/media/ayurveda.webp",
+    "alt": "Olio di sesamo caldo versato da una brocca d'ottone nelle mani"
+  },
+  {
+    "nome": "Massaggio del Kerala",
+    "chiave": "kerala",
+    "categoria": "trattamenti",
+    "online": false,
+    "descrizione": "Attiva la circolazione arteriosa, favorisce la disintossicazione ed è considerato un coadiuvante nell'eliminazione dei lipidi.",
+    "immagine": "/media/kerala.webp",
+    "alt": "Mani lucide di olio caldo accanto a una ciotola d'ottone colma d'olio ambrato"
+  },
+  {
+    "nome": "Tema Natale",
+    "chiave": "tema",
+    "categoria": "astrologia",
+    "online": true,
+    "descrizione": "La rappresentazione del cielo al momento della nascita. Uno strumento di introspezione e dialogo per esplorare tendenze, risorse e sfide personali.",
+    "immagine": "/media/tema.webp",
+    "alt": "Una carta del cielo disegnata a mano su carta avorio, con compasso e una tazza di tisana"
+  },
+  {
+    "nome": "Transiti",
+    "chiave": "transiti",
+    "categoria": "astrologia",
+    "online": true,
+    "descrizione": "Un dialogo tra il tuo Tema Natale e il movimento attuale dei pianeti, per comprendere meglio quali energie stai attraversando in questo momento.",
+    "immagine": "/media/transiti.webp",
+    "alt": "Un planetario meccanico in ottone su un tavolo di noce, alla luce di una lampada"
+  },
+  {
+    "nome": "Sinastria",
+    "chiave": "sinastria",
+    "categoria": "astrologia",
+    "online": true,
+    "descrizione": "Il confronto tra due Temi Natali, per esplorare come le energie di due persone entrano in relazione: coppie, genitori e figli, fratelli, colleghi.",
+    "immagine": "/media/sinastria.webp",
+    "alt": "Le mani di due persone si sfiorano sopra due carte del cielo"
+  },
+  {
+    "nome": "Rivoluzione Solare",
+    "chiave": "rivoluzione",
+    "categoria": "astrologia",
+    "online": true,
+    "descrizione": "A ogni compleanno inizia un nuovo ciclo personale: la Rivoluzione Solare riconosce gli ambiti della vita che chiederanno più attenzione, per viverlo con maggiore consapevolezza.",
+    "immagine": "/media/rivoluzione.webp",
+    "alt": "Una sfera armillare d'ottone sul davanzale, con il sole che sorge sul lago"
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "citta": "Salò",
+    "dettaglio": "Indirizzo in arrivo",
+    "online": false
+  },
+  {
+    "citta": "Brescia",
+    "dettaglio": "Indirizzo in arrivo",
+    "online": false
+  },
+  {
+    "citta": "Manerba del Garda",
+    "dettaglio": "Studio S. Podavini",
+    "online": false
+  },
+  {
+    "citta": "Vestone",
+    "dettaglio": "Presso Rigenera",
+    "online": false
+  },
+  {
+    "citta": "Online",
+    "dettaglio": "In videochiamata",
+    "online": true
+  }
+]

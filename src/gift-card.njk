@@ -1,0 +1,38 @@
+---
+layout: base.njk
+permalink: /gift-card.html
+pageTitle: "Gift card: regala un trattamento o una consulenza · Teresa Venturi"
+pageDescription: "Crea una gift card per un trattamento olistico o una consulenza astrologica con Teresa Venturi, naturopata: tema classico, Natale o compleanno."
+---
+  <section class="section gc-page" id="gift-card" aria-labelledby="gift-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h1 id="gift-h">{{ home.gift_card.titolo }}</h1>
+        <p>{{ home.gift_card.intro }}</p>
+      </div>
+      <div class="gc-stack">
+        <form class="gc-form" data-gift novalidate>
+          <fieldset class="gc-themes"><legend>Tema del voucher</legend>
+            <label><input type="radio" name="tema" value="generico" checked><span class="sw sw--gen"></span>Classico</label>
+            <label><input type="radio" name="tema" value="natale"><span class="sw sw--nat"></span>Natale</label>
+            <label><input type="radio" name="tema" value="compleanno"><span class="sw sw--comp"></span>Compleanno</label>
+          </fieldset>
+          <div class="field"><label for="g-what">Cosa regali</label><select id="g-what" name="regalo"><option>A scelta di chi la riceve</option><optgroup label="Trattamenti olistici">{% for s in servizi | byCat('trattamenti') %}<option>{{ s.nome }}</option>{% endfor %}</optgroup><optgroup label="Consulenze astrologiche">{% for s in servizi | byCat('astrologia') %}<option>{{ s.nome }}</option>{% endfor %}</optgroup></select></div>
+          <div class="gc-row">
+            <div class="field"><label for="g-to">Nome di chi la riceve</label><input id="g-to" name="destinatario" type="text" maxlength="40" required aria-describedby="g-to-err"><p class="field__error" id="g-to-err" hidden>Scrivi il nome di chi riceve il regalo.</p></div>
+            <div class="field"><label for="g-from">Da parte di <span class="opt">(facoltativo)</span></label><input id="g-from" name="mittente" type="text" maxlength="40"></div>
+          </div>
+          <div class="field"><label for="g-msg">Messaggio <span class="opt">(facoltativo)</span></label><textarea id="g-msg" name="messaggio" rows="3" maxlength="160"></textarea><p class="gc-count"><span data-count>0</span>/160</p></div>
+          <div class="field"><label for="g-mail">Email a cui inviare la gift card</label><input id="g-mail" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="g-mail-err"><p class="field__error" id="g-mail-err" hidden>Scrivi un indirizzo email con la @, come nome@esempio.it.</p></div>
+          <div class="btn-row"><button class="btn btn--primary" type="submit">Crea la gift card</button></div>
+        </form>
+        <div class="gc-preview"><canvas class="gc-canvas" width="1600" height="900" role="img" aria-label="Anteprima della gift card"></canvas><p class="gc-note">{{ home.gift_card.nota }}</p>
+        <div class="gc-done" data-gift-done hidden>
+          <p class="gc-done__t">La tua gift card è pronta.</p>
+          <p class="t-small">Inviami la richiesta: ti confermo disponibilità e modalità, poi la spedisco a <b data-gift-mail></b>.</p>
+          <div class="btn-row"><a class="btn btn--primary" href="#" data-gift-send>Invia la richiesta su WhatsApp</a><button class="btn btn--secondary" type="button" data-gift-dl>Scarica il voucher</button></div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>

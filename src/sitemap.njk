@@ -1,0 +1,13 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>{{ site.dominio }}/</loc></url>
+  <url><loc>{{ site.dominio }}/gift-card.html</loc></url>
+{%- for e in collections.eventiOrdinati %}
+  <url><loc>{{ site.dominio }}{{ e.url }}</loc></url>
+{%- endfor %}
+  <url><loc>{{ site.dominio }}/privacy.html</loc></url>
+</urlset>

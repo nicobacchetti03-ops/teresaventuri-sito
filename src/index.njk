@@ -1,0 +1,228 @@
+---
+layout: base.njk
+permalink: /index.html
+isHome: true
+showBanner: true
+---
+{% from "icons.njk" import wa, tel %}
+{%- set waAsk = 'https://wa.me/' + site.whatsapp + '?text=' -%}
+  <section class="hero hero--photo" data-enter data-calm="left" aria-labelledby="hero-h">
+    <picture class="hero__bg">
+      <source media="(max-width: 1023px)" srcset="{{ home.hero.immagine | img(1200) }}">
+      <img src="{{ home.hero.immagine | img(2400) }}" alt="{{ home.hero.alt }}" style="--ly-pos: 70% 50%; --ly-pos-phone: 78% 50%" fetchpriority="high">
+    </picture>
+    <div class="wrap"><div class="hero-text">
+      <div class="hero__text">
+        <h1 id="hero-h">{{ site.nome }}, <em>{{ site.professione }}</em></h1>
+        {% if home.hero.citazione %}<p class="hero__lead hero__quote">«{{ home.hero.citazione }}»{% if home.hero.autore %}<span>{{ home.hero.autore }}</span>{% endif %}</p>{% endif %}
+        <div class="btn-row"><a class="btn btn--primary" href="#contatti">Chiedi informazioni<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a><a class="btn btn--secondary" href="#trova">Trova il tuo percorso</a></div>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="section" id="servizi" aria-labelledby="servizi-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="servizi-h">{{ home.servizi.titolo }}</h2>
+        <p>{{ home.servizi.intro }}</p>
+      </div>
+      <div class="svc-tabs" role="tablist" aria-label="Servizi">
+        <button role="tab" id="tab-tratt" aria-controls="p-tratt" aria-selected="true">Trattamenti olistici</button>
+        <button role="tab" id="tab-astro" aria-controls="p-astro" aria-selected="false">Consulenze astrologiche</button>
+      </div>
+      {% for cat in [['tratt','trattamenti'],['astro','astrologia']] %}
+      <div id="p-{{ cat[0] }}" role="tabpanel" aria-labelledby="tab-{{ cat[0] }}"{% if not loop.first %} hidden{% endif %}>
+        <div class="grid grid--top" data-peek>
+          <ul class="rows span-6">
+            {% for s in servizi | byCat(cat[1]) %}<li data-peek-to="{{ s | key }}" tabindex="0"><img class="row__img" src="{{ s.immagine | img(900) }}" alt="" loading="lazy" width="{{ s.immagine | imgw }}" height="{{ s.immagine | imgh }}"><span class="rows__name">{{ s.nome }}</span><p>{{ s.descrizione }}</p><a class="row-ask" href="{{ waAsk }}{{ ('Ciao Teresa, vorrei informazioni su: ' + s.nome) | uri }}">{{ wa() }}Chiedi</a></li>
+            {% endfor %}
+          </ul>
+          <div class="frame frame--photo frame--fill span-6 start-7">
+            {% for s in servizi | byCat(cat[1]) %}<img class="frame__img" data-peek-for="{{ s | key }}" src="{{ s.immagine | img(900) }}" alt="{{ s.alt }}" loading="lazy"{% if not loop.first %} hidden{% endif %}>
+            {% endfor %}
+          </div>
+        </div>
+        <p class="swipe-hint">Scorri per vedere tutti i servizi</p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="section ground-surface" id="trova" aria-labelledby="trova-h">
+    <div class="wrap">
+      <div class="grid grid--top">
+        <div class="span-5">
+          <div class="section-head">
+            <h2 id="trova-h">{{ home.questionario.titolo }}</h2>
+            <p>{{ home.questionario.intro }}</p>
+          </div>
+          <p class="t-small muted">{{ home.questionario.nota }}</p>
+        </div>
+        <div class="quiz span-6 start-7" data-quiz aria-live="polite">
+          <noscript><p>Scrivimi dal modulo qui sotto e ti consiglio io da dove partire.</p></noscript>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section ground-inverse" id="segno" aria-labelledby="segno-h">
+    <div class="wrap">
+      <div class="grid grid--top">
+        <div class="span-6">
+          <div class="section-head">
+            <h2 id="segno-h">{{ home.archetipo.titolo }}</h2>
+            <p>{{ home.archetipo.intro }}</p>
+          </div>
+          <form class="sign-form" data-sign novalidate>
+            <div><label for="s-day">Giorno</label><select id="s-day" name="giorno">{% for d in range(1, 32) %}<option>{{ d }}</option>{% endfor %}</select></div>
+            <div><label for="s-month">Mese</label><select id="s-month" name="mese">{% for m in ['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'] %}<option value="{{ loop.index }}">{{ m }}</option>{% endfor %}</select></div>
+            <button class="btn btn--primary" type="submit">Scopri l'archetipo</button>
+          </form>
+          <div class="sign-out" aria-live="polite" data-sign-out></div>
+        </div>
+        <div class="span-6 start-7">
+          {% include "wheel.svg.njk" %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="chi-sono" aria-labelledby="chi-h">
+    <div class="wrap">
+      <div class="grid grid--top">
+        <div class="span-6 bio">
+          <div class="section-head"><h2 id="chi-h">{{ home.chi_sono.titolo }}</h2></div>
+          {% for p in home.chi_sono.paragrafi %}<p>{{ p }}</p>
+          {% endfor %}
+          {% if home.chi_sono.frase %}<p class="mo-wh__text" data-moment="word-highlight">{{ home.chi_sono.frase }}</p>{% endif %}
+          <p class="sign-name">{{ site.nome }}</p>
+        </div>
+        {% if home.chi_sono.ritratto %}
+        <figure class="portrait span-5 start-8"><img src="{{ home.chi_sono.ritratto | img(900) }}" alt="{{ home.chi_sono.ritratto_alt }}" loading="lazy" width="{{ home.chi_sono.ritratto | imgw }}" height="{{ home.chi_sono.ritratto | imgh }}"></figure>
+        {% else %}
+        <figure class="portrait-ph span-5 start-8"><img src="/logo.svg" alt="" width="150" height="150"><span>Ritratto in arrivo</span></figure>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <section class="section ground-surface" id="percorso" style="--h: 2" data-moment="pinned-chapters" aria-labelledby="percorso-h">
+    <div class="wrap mo-pc__grid">
+      <div class="mo-pc__text">
+        <h2 id="percorso-h">{{ home.percorso.titolo }}</h2>
+        <p class="pc-intro">{{ home.percorso.intro }}</p>
+        <ol class="mo-pc__steps">
+          {% for st in home.percorso.passi %}
+          <li class="mo-pc__step">
+            <h3>{{ loop.index }}. {{ st.titolo }}</h3>
+            <p>{{ st.testo }}</p>
+            <figure class="mo-pc__visual"><img src="{{ st.immagine | img(1200) }}" alt="{{ st.alt }}" width="{{ st.immagine | imgw }}" height="{{ st.immagine | imgh }}" loading="lazy"></figure>
+          </li>
+          {% endfor %}
+        </ol>
+        <div class="pc-dots" aria-hidden="true">{% for st in home.percorso.passi %}<i></i>{% endfor %}</div>
+      </div>
+      <div class="mo-pc__visuals frame"></div>
+    </div>
+  </section>
+
+  {% if collections.eventiOrdinati.length %}
+  <section class="section" id="eventi" aria-labelledby="eventi-h">
+    <div class="wrap">
+      <div class="ev-head">
+        <div class="section-head">
+          <h2 id="eventi-h">{{ home.eventi.titolo }}</h2>
+          <p>{{ home.eventi.intro }}</p>
+        </div>
+        <div class="ev-arrows" aria-hidden="true"><button type="button" data-ev="-1" tabindex="-1">←</button><button type="button" data-ev="1" tabindex="-1">→</button></div>
+      </div>
+      <ul class="ev-track" data-ev-track>
+        {% for e in collections.eventiOrdinati %}
+          <li class="ev-card" data-date="{{ e.data.data_ora | evIso }}">
+            <a href="{{ e.url }}">
+              <div class="ev-card__img">{% if e.data.locandina %}<img src="{{ e.data.locandina | img(600) }}" alt="{{ e.data.locandina_alt }}" loading="lazy" width="{{ e.data.locandina | imgw }}" height="{{ e.data.locandina | imgh }}">{% endif %}<span class="ev-date"><b>{{ e.data.data_ora | evNum }}</b>{{ e.data.data_ora | evMon }}</span></div>
+              <span class="ev-status" data-status></span>
+              <span class="ev-serie">{% if e.data.serie %}{{ e.data.serie }} · {% endif %}ore {{ e.data.data_ora | evTime }}</span>
+              <h3>{{ e.data.titolo }}</h3>
+              <span class="ev-place">{{ e.data.citta }}{% if e.data.luogo %}, presso {{ e.data.luogo }}{% endif %}</span>
+              <span class="ev-more">Dettagli evento</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+  {% endif %}
+
+  <section class="section" id="sedi" aria-labelledby="sedi-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="sedi-h">{{ home.sedi.titolo }}</h2>
+        <p>{{ home.sedi.intro }}</p>
+      </div>
+      <div class="grid grid--top">
+        <ul class="places span-6">
+          {% for s in sedi %}<li><span class="places__town">{% if s.online %}<em>{{ s.citta }}</em>{% else %}{{ s.citta }}{% endif %}</span><span class="places__where">{{ s.dettaglio }}</span></li>
+          {% endfor %}
+        </ul>
+        <div class="frame frame--photo span-6 start-7">
+          <img src="{{ home.sedi.immagine | img(900) }}" alt="{{ home.sedi.alt }}" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="domande" aria-labelledby="domande-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="domande-h">{{ home.domande.titolo }}</h2></div>
+      <div class="faq">
+        {% for f in faq %}<div class="faq__item"><h3>{{ f.domanda }}</h3><p>{{ f.risposta }}</p></div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contatti" aria-labelledby="contatti-h">
+    <div class="wrap">
+      <div class="grid grid--top">
+        <div class="span-6">
+          <div class="section-head">
+            <h2 id="contatti-h">{{ home.contatti.titolo }}</h2>
+            <p>{{ home.contatti.intro }}</p>
+          </div>
+          <ul class="direct">
+            <li><a class="link" href="https://wa.me/{{ site.whatsapp }}">{{ wa() }}Scrivimi su WhatsApp</a></li>
+            <li><a class="link" href="tel:+{{ site.whatsapp }}">{{ tel() }}{{ site.telefono }}</a></li>
+          </ul>
+          <figure class="side-photo"><img src="{{ home.contatti.immagine | img(1200) }}" alt="{{ home.contatti.alt }}" loading="lazy"></figure>
+        </div>
+        <form class="form span-6 start-7" action="{{ site.modulo_endpoint or ('mailto:' + (site.email or 'info@teresaventuri.it')) }}" method="post"{% if not site.modulo_endpoint %} enctype="text/plain"{% endif %} data-endpoint="{{ site.modulo_endpoint }}" data-sent="{{ home.contatti.messaggio_inviato }}" novalidate>
+          <input type="hidden" name="_subject" value="Richiesta dal sito">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+          <div class="field"><label for="f-name">Nome</label>
+              <input id="f-name" name="nome" type="text" autocomplete="name" required aria-describedby="f-name-err">
+              <p class="field__error" id="f-name-err" hidden>Scrivi il tuo nome.</p></div>
+            <div class="field"><label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="f-email-err">
+              <p class="field__error" id="f-email-err" hidden>Scrivi un indirizzo email con la @, come nome@esempio.it.</p></div>
+            <div class="field"><label for="f-topic">Ti interessa</label>
+              <select id="f-topic" name="interesse">
+                <option>Non lo so ancora</option>
+                <optgroup label="Trattamenti olistici">{% for s in servizi | byCat('trattamenti') %}<option>{{ s.nome }}</option>{% endfor %}</optgroup>
+                <optgroup label="Consulenze astrologiche">{% for s in servizi | byCat('astrologia') %}<option>{{ s.nome }}</option>{% endfor %}</optgroup>
+              </select></div>
+            <div class="field"><label for="f-place">Dove preferisci</label>
+              <select id="f-place" name="sede" required aria-describedby="f-place-err"><option value="">Scegli una sede</option>{% for s in sedi %}<option>{{ s | placeLabel }}</option>{% endfor %}</select>
+              <p class="field__error" id="f-place-err" hidden>Scegli dove preferisci incontrarci.</p></div>
+          <div class="field field--full"><label for="f-msg">Messaggio</label>
+            <textarea id="f-msg" name="messaggio" rows="4" required aria-describedby="f-msg-err"></textarea>
+            <p class="field__error" id="f-msg-err" hidden>Scrivi due righe su cosa ti interessa.</p></div>
+          <div class="field field--full field--consent"><input id="f-ok" name="privacy" type="checkbox" required aria-describedby="f-ok-err"><label for="f-ok">Ho letto l'<a class="link" href="/privacy.html">informativa privacy</a> e accetto di essere ricontattata o ricontattato.</label>
+            <p class="field__error" id="f-ok-err" hidden>Spunta la casella per inviare la richiesta.</p></div>
+          <div class="btn-row"><button class="btn btn--primary" type="submit">Chiedi informazioni</button></div>
+          <p class="form__status" role="status" data-form-status></p>
+          <p class="t-small muted">Ti rispondo io, di persona. Se hai fretta, scrivimi su WhatsApp.</p>
+        </form>
+      </div>
+    </div>
+  </section>

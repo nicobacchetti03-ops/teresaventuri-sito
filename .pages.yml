@@ -1,0 +1,303 @@
+# Pages CMS: pannello di modifica del sito di Teresa Venturi
+# Ogni salvataggio crea un commit su GitHub e Cloudflare Pages ripubblica il sito in 1-2 minuti.
+
+media:
+  input: src/media
+  output: /media
+  categories: [image]
+
+content:
+  - name: eventi
+    label: Eventi
+    type: collection
+    path: src/eventi
+    format: yaml-frontmatter
+    filename: "{primary}.md"
+    exclude: [eventi.11tydata.js]
+    view:
+      fields: [titolo, data_ora, citta, nascosto]
+      primary: titolo
+      sort: [data_ora, titolo]
+      default:
+        sort: data_ora
+        order: desc
+    fields:
+      - name: titolo
+        label: Titolo dell'evento
+        type: string
+        required: true
+      - name: data_ora
+        label: Data e ora di inizio
+        type: date
+        required: true
+        options:
+          time: true
+          format: "yyyy-MM-dd'T'HH:mm"
+      - name: durata_ore
+        label: Durata in ore
+        description: Serve per il promemoria nel calendario. Se non sai, lascia 2.
+        type: number
+      - name: serie
+        label: Ciclo di serate (facoltativo)
+        description: Ad esempio «Uno sguardo sull'eternità». Lascia vuoto se l'evento è singolo.
+        type: string
+      - name: serie_sottotitolo
+        label: Sottotitolo del ciclo (facoltativo)
+        type: string
+      - name: luogo
+        label: Nome del luogo
+        description: Ad esempio Komorebi
+        type: string
+      - name: indirizzo
+        label: Via e numero
+        type: string
+      - name: citta
+        label: Città
+        type: string
+        required: true
+      - name: presenta
+        label: Presenta
+        type: string
+      - name: ospiti
+        label: Ospiti
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{nome}"
+        fields:
+          - name: nome
+            label: Nome
+            type: string
+          - name: ruolo
+            label: Ruolo (facoltativo)
+            type: string
+      - name: ingresso
+        label: Ingresso
+        description: Ad esempio «Libero, con prenotazione»
+        type: string
+      - name: locandina
+        label: Locandina
+        description: Immagine verticale. Va bene anche la foto o il file della locandina stampata.
+        type: image
+      - name: locandina_alt
+        label: Descrizione della locandina
+        description: Una frase che descrive l'immagine, per chi non la vede (accessibilità e Google).
+        type: string
+      - name: nascosto
+        label: Nascondi dal sito
+        description: Spunta per togliere l'evento dal sito senza cancellarlo.
+        type: boolean
+      - name: body
+        label: Descrizione della serata
+        type: rich-text
+
+  - name: servizi
+    label: Consulenze e trattamenti
+    type: file
+    path: src/_data/servizi.json
+    format: json
+    list: true
+    fields:
+      - name: nome
+        label: Nome
+        type: string
+        required: true
+      - name: categoria
+        label: Categoria
+        type: select
+        required: true
+        options:
+          values:
+            - name: trattamenti
+              label: Trattamenti olistici
+            - name: astrologia
+              label: Consulenze astrologiche
+      - name: descrizione
+        label: Descrizione breve
+        type: text
+      - name: immagine
+        label: Foto
+        description: Formato verticale (4:5).
+        type: image
+      - name: alt
+        label: Descrizione della foto
+        type: string
+      - name: online
+        label: Si può fare anche online
+        description: Spunta se è possibile in videochiamata. Il questionario propone online solo questi.
+        type: boolean
+      - name: chiave
+        label: Codice interno (non modificare)
+        description: Lo usa il questionario «Trova il percorso». Per un nuovo servizio lascialo vuoto.
+        type: string
+
+  - name: sedi
+    label: Sedi
+    type: file
+    path: src/_data/sedi.json
+    format: json
+    list: true
+    fields:
+      - name: citta
+        label: Città
+        type: string
+        required: true
+      - name: dettaglio
+        label: Indirizzo o presso
+        description: Via e quartiere, oppure ad esempio «Presso Rigenera».
+        type: string
+      - name: online
+        label: È la voce «online»
+        description: Spunta solo per le consulenze in videochiamata.
+        type: boolean
+
+  - name: faq
+    label: Domande frequenti
+    type: file
+    path: src/_data/faq.json
+    format: json
+    list: true
+    fields:
+      - name: domanda
+        label: Domanda
+        type: string
+        required: true
+      - name: risposta
+        label: Risposta
+        type: text
+        required: true
+
+  - name: home
+    label: Testi della homepage
+    type: file
+    path: src/_data/home.json
+    format: json
+    fields:
+      - name: hero
+        label: Apertura (prima schermata)
+        type: object
+        fields:
+          - { name: citazione, label: Citazione, type: string }
+          - { name: autore, label: Autore della citazione, type: string }
+          - { name: immagine, label: Foto di sfondo, description: "Orizzontale, larga almeno 2400 px.", type: image }
+          - { name: alt, label: Descrizione della foto, type: string }
+      - name: servizi
+        label: Consulenze e trattamenti
+        type: object
+        fields:
+          - { name: titolo, label: Titolo, type: string }
+          - { name: intro, label: Testo, type: text }
+      - name: questionario
+        label: Questionario «Trova il percorso»
+        type: object
+        fields:
+          - { name: titolo, label: Titolo, type: string }
+          - { name: intro, label: Testo, type: text }
+          - { name: nota, label: Nota piccola, type: string }
+      - name: archetipo
+        label: Scopri il tuo archetipo
+        type: object
+        fields:
+          - { name: titolo, label: Titolo, type: string }
+          - { name: intro, label: Testo, type: text }
+      - name: chi_sono
+        label: Chi sono
+        type: object
+        fields:
+          - { name: titolo, label: Titolo, type: string }
+          - { name: paragrafi, label: Paragrafi, type: text, list: true }
+          - { name: frase, label: Frase in evidenza, type: text }
+          - { name: ritratto, label: Ritratto, description: "Verticale 4:5. Finché è vuoto si vede il segnaposto con il logo.", type: image }
+          - { name: ritratto_alt, label: Descrizione del ritratto, type: string }
+      - name: percorso
+        label: Il percorso in 3 passi
+        type: object
+        fields:
+          - { name: titolo, label: Titolo, type: string }
+          - { name: intro, label: Testo, type: string }
+          - name: passi
+            label: Passi
+            type: object
+            list:
+              min: 1
+              max: 4
+              collapsible:
+                collapsed: true
+                summary: "{titolo}"
+            fields:
+              - { name: titolo, label: Titolo, type: string }
+              - { name: testo, label: Testo, type: text }
+              - { name: immagine, label: Foto, description: "Orizzontale 3:2.", type: image }
+              - { name: alt, label: Descrizione della foto, type: string }
+      - name: eventi
+        label: Eventi (intestazione)
+        type: object
+        fields:
+          - { name: titolo, label: Titolo, type: string }
+          - { name: intro, label: Testo, type: text }
+      - name: sedi
+        label: Sedi (intestazione)
+        type: object
+        fields:
+          - { name: titolo, label: Titolo, type: string }
+          - { name: intro, label: Testo, type: text }
+          - { name: immagine, label: Foto, type: image }
+          - { name: alt, label: Descrizione della foto, type: string }
+      - name: domande
+        label: Domande frequenti (intestazione)
+        type: object
+        fields:
+          - { name: titolo, label: Titolo, type: string }
+      - name: contatti
+        label: Richiesta di informazioni
+        type: object
+        fields:
+          - { name: titolo, label: Titolo, type: string }
+          - { name: intro, label: Testo, type: text }
+          - { name: messaggio_inviato, label: Messaggio dopo l'invio, type: string }
+          - { name: immagine, label: Foto, type: image }
+          - { name: alt, label: Descrizione della foto, type: string }
+      - name: gift_card
+        label: Gift card
+        type: object
+        fields:
+          - { name: banner_titolo, label: Titolo del banner nel piè di pagina, type: string }
+          - { name: banner_testo, label: Testo del banner, type: string }
+          - { name: titolo, label: Titolo della pagina, type: string }
+          - { name: intro, label: Testo della pagina, type: text }
+          - { name: nota, label: Nota sotto il voucher, type: string }
+
+  - name: site
+    label: Contatti e impostazioni
+    type: file
+    path: src/_data/site.json
+    format: json
+    fields:
+      - { name: nome, label: Nome, type: string }
+      - { name: professione, label: Professione, type: string }
+      - { name: telefono, label: Telefono (come si legge), description: "Ad esempio 329 792 3353", type: string }
+      - { name: whatsapp, label: Numero WhatsApp, description: "Con prefisso 39, senza spazi né +. Ad esempio 393297923353", type: string, pattern: "^[0-9]{8,15}$" }
+      - { name: email, label: Email, type: string }
+      - { name: instagram, label: Link Instagram, description: "L'indirizzo completo del profilo. Vuoto = icona nascosta.", type: string }
+      - { name: facebook, label: Link Facebook, description: "L'indirizzo completo della pagina. Vuoto = icona nascosta.", type: string }
+      - { name: partita_iva, label: Partita IVA, description: "Obbligatoria sul sito di un professionista: compare nel piè di pagina.", type: string }
+      - { name: footer_descrizione, label: Frase nel piè di pagina, type: string }
+      - { name: crediti_immagini, label: Nota sulle immagini, description: "Da cancellare quando tutte le foto saranno reali.", type: string }
+      - { name: seo_titolo, label: Titolo per Google, type: string }
+      - { name: seo_descrizione, label: Descrizione per Google, type: text }
+      - { name: modulo_endpoint, label: Indirizzo del modulo Formspree, description: "Lo imposta chi gestisce il sito.", type: string, readonly: true }
+      - { name: dominio, label: Dominio, type: string, readonly: true }
+
+  - name: privacy
+    label: Informativa privacy
+    type: file
+    path: src/privacy.md
+    format: yaml-frontmatter
+    fields:
+      - { name: layout, type: string, hidden: true }
+      - { name: permalink, type: string, hidden: true }
+      - { name: titolo, label: Titolo, type: string }
+      - { name: pageTitle, type: string, hidden: true }
+      - { name: pageDescription, type: string, hidden: true }
+      - { name: body, label: Testo, type: rich-text }

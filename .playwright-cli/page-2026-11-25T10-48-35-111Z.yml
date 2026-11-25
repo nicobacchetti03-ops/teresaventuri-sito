@@ -1,0 +1,122 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Vai al contenuto" [ref=e4]:
+        - /url: "#top"
+      - link "Teresa Venturi" [ref=e5]:
+        - /url: /
+      - navigation "Principale" [ref=e6]:
+        - link "Servizi" [ref=e8]:
+          - /url: /#servizi
+        - link "Chi sono" [ref=e12]:
+          - /url: /#chi-sono
+        - link "Eventi" [ref=e14]:
+          - /url: /#eventi
+        - link "Gift card" [ref=e16]:
+          - /url: /gift-card.html
+        - link "FAQ" [ref=e18]:
+          - /url: /#domande
+        - link "Sedi" [ref=e20]:
+          - /url: /#sedi
+      - link "Chiedi informazioni" [ref=e22] [cursor=pointer]:
+        - /url: /#contatti
+  - main [ref=e23]:
+    - region "Regala una gift card" [ref=e24]:
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - heading "Regala una gift card" [level=1] [ref=e27]
+          - paragraph [ref=e28]: "Scegli il trattamento o la consulenza, scrivi a chi è dedicata e guarda il voucher prendere forma. Poi lo invii a me: ti confermo i dettagli e lo spedisco all'indirizzo email indicato."
+        - generic [ref=e29]:
+          - generic [ref=e30]:
+            - group "Tema del voucher" [ref=e31]:
+              - generic [ref=e33] [cursor=pointer]:
+                - radio "Classico" [checked]
+                - text: Classico
+              - generic [ref=e35] [cursor=pointer]:
+                - radio "Natale"
+                - text: Natale
+              - generic [ref=e37] [cursor=pointer]:
+                - radio "Compleanno"
+                - text: Compleanno
+            - generic [ref=e39]:
+              - generic [ref=e40]: Cosa regali
+              - combobox "Cosa regali" [ref=e41]:
+                - option "A scelta di chi la riceve" [selected]
+                - option "Consulenza Naturopatica"
+                - option "Consulenza Fiori di Bach"
+                - option "Riflessologia plantare"
+                - option "Tecnica Metamorfica"
+                - option "Le 152 manovre del massaggio Ayurvedico"
+                - option "Massaggio del Kerala"
+                - option "Tema Natale"
+                - option "Transiti"
+                - option "Sinastria"
+                - option "Rivoluzione Solare"
+            - generic [ref=e42]:
+              - generic [ref=e43]:
+                - generic [ref=e44]: Nome di chi la riceve
+                - textbox "Nome di chi la riceve" [ref=e45]
+                - text: "!"
+              - generic [ref=e46]:
+                - generic [ref=e47]: Da parte di (facoltativo)
+                - textbox "Da parte di (facoltativo)" [ref=e48]
+            - generic [ref=e49]:
+              - generic [ref=e50]: Messaggio (facoltativo)
+              - textbox "Messaggio (facoltativo)" [ref=e51]
+              - paragraph [ref=e52]: 0/160
+            - generic [ref=e53]:
+              - generic [ref=e54]: Email a cui inviare la gift card
+              - textbox "Email a cui inviare la gift card" [ref=e55]
+              - text: "!"
+            - button "Crea la gift card" [ref=e57] [cursor=pointer]
+          - generic [ref=e58]:
+            - img "Anteprima della gift card" [ref=e59]
+            - paragraph [ref=e60]: Anteprima. La gift card è valida solo dopo la conferma di Teresa.
+  - contentinfo "Piè di pagina" [ref=e61]:
+    - generic [ref=e63]:
+      - generic [ref=e64]:
+        - generic [ref=e65]:
+          - link "Teresa Venturi" [ref=e66]:
+            - /url: /
+          - paragraph [ref=e67]: Naturopata. Consulenze astrologiche e trattamenti olistici.
+        - generic [ref=e68]:
+          - heading "Servizi" [level=3] [ref=e69]
+          - list [ref=e70]:
+            - listitem [ref=e71]:
+              - link "Trattamenti olistici" [ref=e72]:
+                - /url: /#servizi
+            - listitem [ref=e73]:
+              - link "Consulenze astrologiche" [ref=e74]:
+                - /url: /#servizi
+            - listitem [ref=e75]:
+              - link "Gift card" [ref=e76]:
+                - /url: /gift-card.html
+        - generic [ref=e77]:
+          - heading "Informazioni" [level=3] [ref=e78]
+          - list [ref=e79]:
+            - listitem [ref=e80]:
+              - link "Percorso" [ref=e81]:
+                - /url: /#percorso
+            - listitem [ref=e82]:
+              - link "Domande" [ref=e83]:
+                - /url: /#domande
+            - listitem [ref=e84]:
+              - link "Sedi" [ref=e85]:
+                - /url: /#sedi
+        - generic [ref=e86]:
+          - heading "Contatti" [level=3] [ref=e87]
+          - list [ref=e88]:
+            - listitem [ref=e89]:
+              - link "WhatsApp" [ref=e90]:
+                - /url: https://wa.me/393297923353
+            - listitem [ref=e91]:
+              - link "329 792 3353" [ref=e92]:
+                - /url: tel:+393297923353
+      - generic [ref=e93]:
+        - link "WhatsApp" [ref=e95]:
+          - /url: https://wa.me/393297923353
+        - generic [ref=e98]:
+          - text: © 2026 Teresa Venturi
+          - link "Privacy" [ref=e99]:
+            - /url: /privacy.html
+        - generic [ref=e100]: Immagini realizzate con intelligenza artificiale
